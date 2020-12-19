@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <meta charset="utf-8">
+        <title>Driftless Timer</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+        <style>
+            body {
+                background: #e6e8ea;
+            }
+
+            .shadow {
+                box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,0.15) !important;
+            }
+        </style>
+    </head>
+
+    <body class="py-4">
+        <div class="container">
+            <header class="text-center mb-5">
+                <h1 class="display-3">Accurate Timer Tutorial</h3>
+                <p class="lead mb-0">Based on <a href="https://www.youtube.com/watch?v=x8PBWobv6NY" target="_blank">https://www.youtube.com/watch?v=x8PBWobv6NY</a>
+            </header>
+
+            <section class="bg-white p-4 mb-5 shadow">
+                <h3>1. Drifting Drum Loops</h3>
+                <p class="lead">Audibly illustrate the innacuracy of default timers with a simple drum loop test.</p>
+
+                <div class="btn-group">
+                    <button class="btn btn-lg btn-outline-primary" onclick="playSound()">Start Test</button>
+                    <button class="btn btn-lg btn-outline-primary" onclick="stopSound()">Stop Test</button>
+                </div>
+            </section>
+
+            <section class="bg-white p-4 mb-5 shadow">
+                <h3>2. Timer Drift</h3>
+                <p class="lead">Visually display the innacuracy of javascript timers in Console by showing total drift.</p>
+                <div class="btn-group">
+                    <button class="btn btn-lg btn-outline-primary" onclick="startTest()">Start Test</button>
+                    <button class="btn btn-lg btn-outline-primary" onclick="stopTest()">Stop Test</button>
+                </div>
+            </section>
+
+            <section class="bg-white p-4 mb-5 shadow">
+                <h3>3. Driftless Timer</h3>
+                <p class="lead">Create a timer that compensates for timer drift</p>
+                <div class="btn-group">
+                    <button class="btn btn-lg btn-outline-primary" onclick="myTimer.start()">Start Test</button>
+                    <button class="btn btn-lg btn-outline-primary" onclick="myTimer.stop()">Stop Test</button>
+                </div>
+            </section>
+
+            <section class="bg-white p-4 mb-5 shadow">
+                <h3>4. Driftless Drum Loops</h3>
+                <p class="lead">Use our new timer to make our simple drum loops more accurate.</p>
+                <div class="btn-group">
+                    <button class="btn btn-lg btn-outline-primary" onclick="startDriftlessDrums()">Start Test</button>
+                    <button class="btn btn-lg btn-outline-primary" onclick="stopDriftlessDrums()">Stop Test</button>
+                </div>
+            </section>
+
+            <section class="bg-white p-4 mb-5 shadow">
+                <h3>5. Drum Sequencer</h3>
+                <p class="lead">Who are we kidding? Let's make it even more accurate.</p>
+                <div class="btn-group">
+                    <button class="btn btn-lg btn-outline-primary" onclick="sequencer.start()">Start Test</button>
+                    <button class="btn btn-lg btn-outline-primary" onclick="sequencer.stop()">Stop Test</button>
+                </div>
+            </section>
+        </div>
+
+        <script src="./howler.min.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
