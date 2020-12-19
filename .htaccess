@@ -1,0 +1,160 @@
+#
+#   Dreamhost Apache Config (DW Templates)
+#   2019-02-14 Edition, Tweaked on 2020-12-19
+#
+
+Header set CFG-Version "2019-02-14 Edition, Tweaked on 2020-12-19"
+
+<IfModule mod_rewrite.c>
+    # Enable Server Rewrites
+    RewriteEngine On
+
+    # Enable Symbolic Links and Disable Directory Indexes
+    Options +FollowSymlinks -Indexes
+
+	# Make sure we don't redirect to our user home folder
+	RewriteBase /
+
+    # ------------------------------------------------------------------------
+	# 	REMOVE FILE EXTENSIONS
+	# ------------------------------------------------------------------------
+
+	# Remove Trailing Slash
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)/$ $1 [R=301,L]
+
+	# Rewrite Links Without Extensions
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+	# 301 Redirect Links With Extensions
+	RewriteCond %{THE_REQUEST} \.html
+	RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+
+	# Index Redirect
+	RewriteRule ^index\.html$ / [R=301,L]
+	RewriteRule ^(.*)/index\.html$ /$1/ [R=301,L]
+
+	# ------------------------------------------------------------------------
+	# 	HTTPS REWRITES
+	# ------------------------------------------------------------------------
+
+	# Set ENV variable to allow automatic https rewrites
+	RewriteCond %{HTTPS} =on
+	RewriteRule ^ - [env=proto:https]
+	RewriteCond %{HTTPS} !=on
+	RewriteRule ^ - [env=proto:http]
+
+	# Force HTTPS
+	#RewriteCond %{HTTPS} !on
+	#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+
+# ============================================================================
+#	301 REDIRECTS
+# ============================================================================
+
+# Redirect 301 /old.html /new.html
+
+
+# ============================================================================
+#	ERROR DOCUMENTS
+# ============================================================================
+
+ErrorDocument 404 '<style>* {margin: 0} html, body {height: 100%;} body {background: #FFF url(https://www.transparenttextures.com/patterns/clean-textile.png); font-family: -apple-system,BlinkMacSystemFont,sans-serif; font-size: 1.4rem; color: black; line-height: 1.5; text-align: center; display: flex; justify-content: center; align-items: center;} h1 {font-size: 4rem; font-weight: 600; color: inherit;} p {font-weight: 300;} .btn {color: #007bff; text-decoration: none; display: inline-block; margin-top: 15px; padding: 0.5rem 0.85rem; border: 1px solid; border-radius: 0.35rem;} .btn:hover {background: #007bff; color: white;}</style><div><h1>Space Link Paradox</h1><p>This document does not exist in this time or space.<br><a class="btn" href="/" id="actionBtn">&larr; Return to Your Time</a></p></div>'
+
+ErrorDocument 403 '<style>* {margin: 0} html, body {height: 100%;} body {background: #000 url(https://www.transparenttextures.com/patterns/diagmonds.png); font-family: -apple-system,BlinkMacSystemFont,sans-serif; font-size: 1.4rem; color: white; line-height: 1.5; text-align: center; display: flex; justify-content: center; align-items: center;} h1 {font-size: 4rem; font-weight: 600; color: inherit;} p {font-weight: 300;}</style><div><h1>Access Denied</h1><p>You do not have permission to access this content. This error has been logged.</p></div>'
+
+ErrorDocument 500 '<style>* {margin: 0;} html, body {height: 100%;} body {background: #000 url(https://www.transparenttextures.com/patterns/diagmonds.png); font-family: -apple-system,BlinkMacSystemFont,sans-serif; font-size: 1.4rem; color: white; line-height: 1.5; text-align: center; display: flex; justify-content: center; align-items: center;} h1 {font-size: 4rem; font-weight: 600; color: inherit;} p {font-weight: 300;}</style><div><h1>Internal Server Error</h1><p>The server encountered an internal error or misconfiguration and was unable to complete your request.</p></div>'
+
+
+# ============================================================================
+#	MEDIA TYPES
+# ============================================================================
+
+<IfModule mod_mime.c>
+    AddType image/svg+xml           svg svgz
+    AddType image/webp              webp
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    # If the browser supports WebP images and a corresponding WebP file with the
+    # same name exists at the same location, then serve up a WebP image instead.
+    RewriteCond %{HTTP_ACCEPT} image/webp
+    RewriteCond %{DOCUMENT_ROOT}/$1.webp -f
+    RewriteRule (.+)\.(gif|jpg|png)$ $1.webp [T=image/webp,E=accept:1]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header append Vary Accept env=REDIRECT_accept
+
+    <FilesMatch ".(js|css|xml|gz|html)$">
+        Header append Vary: Accept-Encoding
+    </FilesMatch>
+</IfModule>
+
+# Default Character Sets and Language
+# Note: This also allows *.ssi includes...
+AddType 'text/html; charset=UTF-8' .htm .html .shtml .cshtml .ssi
+AddHandler server-parsed .htm .html .shtml .cshtml .ssi
+DefaultLanguage en-us
+
+
+# ============================================================================
+#	SET HEADERS
+#   https://github.com/phanan/htaccess
+#   https://moz.com/blog/htaccess-file-snippets-for-seos
+# ============================================================================
+
+<IfModule mod_headers.c>
+    # Set Custom Headers
+    Header set Author "Stephen D. Ginn Jr at Crema Design Studio"
+    Header set Hiring-Now "Apply at cremadesignstudio.com/apply and mention this header."
+
+    # Enable HTTP Strict Transport Security (HSTS) to help prevent man-in-the-middle attacks.
+    # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+</IfModule>
+
+
+# ============================================================================
+#	COMPRESSION
+# ============================================================================
+
+<IfModule mod_deflate.c>
+    # Make sure Apache tells the browser certain file types use gzip encoding.
+    # Without that info, the browser can't understand the content.
+    # https://httpd.apache.org/docs/current/mod/mod_mime.html#addencoding
+
+    <IfModule mod_mime.c>
+        AddEncoding gzip              svgz
+    </IfModule>
+
+    # Add GZip Compression for certain file types
+    <filesmatch "\.(js|json|xml|css|html|shtml|ssi|php|ico|eot|otf|ttf)$">
+        SetOutputFilter DEFLATE
+    </filesmatch>
+</IfModule>
+
+
+# ============================================================================
+#	COMPLETELY DISABLE CACHING
+# ============================================================================
+<IfModule mod_headers.c>
+	Header set Cache-Control "no-cache, no-store, must-revalidate"
+	Header set Pragma "no-cache"
+	Header set Expires 0
+</IfModule>
+
+
+# ============================================================================
+#	ALLOW CROSS DOMAIN ACCESS
+# ============================================================================
+
+Header always set Access-Control-Allow-Origin: "*"
+Header always set Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+Header always set Access-Control-Allow-Headers: "*"
+Header always set Access-Control-Allow-Credentials: true
