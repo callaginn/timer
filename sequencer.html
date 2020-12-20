@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <meta charset="utf-8">
+        <title>Drum Sequencer</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <style>
+            .btn-group-toggle {
+                min-width: 200px;
+            }
+        </style>
+    </head>
+
+    <body class="py-4">
+        <div class="container">
+            <header class="text-center mb-5">
+                <h1 class="display-3">Drum Sequencer</h3>
+                <p class="lead mb-0">Stephen Ginn at Crema Design Studio</a>
+            </header>
+
+            <form>
+                <div class="mb-4">
+                    <label>Beats Per Minute</label>
+                    <input type="number" class="form-control" name="bpm" value="120" onmousewheel="sequencer.setInterval(getTempo())" onchange="sequencer.setInterval(getTempo())" />
+                </div>
+
+                <h4>Kick</h4>
+                <div class="d-flex justify-content-between mb-1">
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,0)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,1)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,2)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,3)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,4)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,5)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,6)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,7)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,8)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,9)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,10)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,11)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,12)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,13)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,14)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(0,15)">&nbsp;
+                        </label>
+                    </div>
+                </div>
+
+                <h4>Snare</h4>
+                <div class="d-flex justify-content-between mb-1">
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,0)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,1)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,2)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,3)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,4)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,5)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,6)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,7)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,8)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,9)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,10)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,11)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,12)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,13)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,14)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(1,15)">&nbsp;
+                        </label>
+                    </div>
+                </div>
+
+                <h4>High Hat</h4>
+                <div class="d-flex justify-content-between mb-1">
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,0)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,1)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,2)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,3)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,4)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,5)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,6)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,7)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,8)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,9)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,10)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,11)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,12)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,13)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,14)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(2,15)">&nbsp;
+                        </label>
+                    </div>
+                </div>
+
+                <h4>Clap</h4>
+                <div class="d-flex justify-content-between mb-1">
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,0)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,1)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,2)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,3)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,4)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,5)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,6)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,7)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,8)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,9)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,10)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,11)">&nbsp;
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle d-flex mb-3" data-toggle="buttons">
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,12)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,13)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,14)">&nbsp;
+                        </label>
+                        <label class="btn btn-outline-primary w-100">
+                            <input type="checkbox" onclick="toggleNote(3,15)">&nbsp;
+                        </label>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-lg btn-outline-primary" onclick="sequencer.start()">Start</button>
+                    <button type="button" class="btn btn-lg btn-outline-primary" onclick="sequencer.stop()">Stop</button>
+                </div>
+            </form>
+        </div>
+
+        <script src="./howler.min.js"></script>
+        <script src="sequencer.js"></script>
+    </body>
+</html>
