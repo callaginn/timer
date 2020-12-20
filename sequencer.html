@@ -15,12 +15,15 @@
             }
 
             .btn-outline-primary {
+                color: #a5a5a5;
                 background-color: #f5f5f5;
                 border-color: #ccc;
             }
 
             .btn-outline-primary:hover {
+                color: #999;
                 background-color: #ccc;
+                border-color: #ccc;
             }
         </style>
     </head>
@@ -90,16 +93,16 @@
                     track.insertAdjacentHTML('beforeend', `<div class="col-md-6 col-lg-3 mb-3">
                         <div class="btn-group w-100">
                             <input type="checkbox" class="btn-check" id="${ids[0]}" onclick="toggleNote(this)">
-                            <label class="btn btn-outline-primary" for="${ids[0]}">&nbsp;</label>
+                            <label class="btn btn-outline-primary" for="${ids[0]}">${i*4+1}</label>
 
                             <input type="checkbox" class="btn-check" id="${ids[1]}" onclick="toggleNote(this)">
-                            <label class="btn btn-outline-primary" for="${ids[1]}">&nbsp;</label>
+                            <label class="btn btn-outline-primary" for="${ids[1]}">${i*4+2}</label>
 
                             <input type="checkbox" class="btn-check" id="${ids[2]}" onclick="toggleNote(this)">
-                            <label class="btn btn-outline-primary" for="${ids[2]}">&nbsp;</label>
+                            <label class="btn btn-outline-primary" for="${ids[2]}">${i*4+3}</label>
 
                             <input type="checkbox" class="btn-check" id="${ids[3]}" onclick="toggleNote(this)">
-                            <label class="btn btn-outline-primary" for="${ids[3]}">&nbsp;</label>
+                            <label class="btn btn-outline-primary" for="${ids[3]}">${i*4+4}</label>
                         </div>
                     </div>`);
                 };
