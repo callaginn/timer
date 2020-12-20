@@ -80,7 +80,15 @@ const drums = new Howl({
 
 var drumTracks = [
     {
-        sampleName: 'kick',
+        sampleName: 'closed-hihat',
+        trackMatrix: [0,0,0,0,  0,0,0,0,    0,0,0,0,    0,0,0,0]
+    },
+    {
+        sampleName: 'open-hihat',
+        trackMatrix: [0,0,0,0,  0,0,0,0,    0,0,0,0,    0,0,0,0]
+    },
+    {
+        sampleName: 'crash',
         trackMatrix: [0,0,0,0,  0,0,0,0,    0,0,0,0,    0,0,0,0]
     },
     {
@@ -88,11 +96,11 @@ var drumTracks = [
         trackMatrix: [0,0,0,0,  0,0,0,0,    0,0,0,0,    0,0,0,0]
     },
     {
-        sampleName: 'closed-hihat',
+        sampleName: 'clap',
         trackMatrix: [0,0,0,0,  0,0,0,0,    0,0,0,0,    0,0,0,0]
     },
     {
-        sampleName: 'clap',
+        sampleName: 'kick',
         trackMatrix: [0,0,0,0,  0,0,0,0,    0,0,0,0,    0,0,0,0]
     }
 ];
