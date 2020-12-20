@@ -102,7 +102,7 @@ function getTempo() {
     // 60,000 / BPM = duration of quarter note
     // 60,000 / BPM / 4
 
-    let bpm = Number(document.querySelector('form input[name="bpm"]').value);
+    let bpm = Number(document.querySelector('input[name="bpm"]').value);
     return (60000 / bpm) / 4;
 }
 
@@ -119,18 +119,13 @@ const sequencer = new Timer(() => {
     i++;
 }, msTempo);
 
-function toggleNote(rowID, columnID) {
+function toggleNote(input) {
+    var track = input.closest(".track"),
+        tracks = track.closest(".tracks"),
+        columnID = [...track.querySelectorAll("input")].indexOf(input),
+        rowID = [...tracks.querySelectorAll(".track")].indexOf(track),
+        note = drumTracks[rowID].trackMatrix[columnID];
+
     console.log("Toggling Note: ", rowID, columnID);
-
-    var note = drumTracks[rowID].trackMatrix[columnID];
-
-    console.log(drumTracks[rowID].trackMatrix);
-
-    var newValue = (note === 0) ? 1 : 0;
-
-    drumTracks[rowID].trackMatrix[columnID] = newValue;
-
-    console.log(drumTracks[rowID].trackMatrix);
+    drumTracks[rowID].trackMatrix[columnID] = (note === 0) ? 1 : 0;
 }
-
-// sequencer.setInterval(100);
