@@ -1,7 +1,7 @@
 const drums = new Howl({
     "src": [
-        "./sounds/drums.webm",
-        "./sounds/drums.mp3"
+        "/assets/sounds/drums.webm",
+        "/assets/sounds/drums.mp3"
     ],
     "sprite": {
         "clap": [
@@ -184,25 +184,6 @@ function stopDriftlessDrums() {
 /*/ ============================================================================
     DRUM SEQUENCER
 ============================================================================ /*/
-
-const drumTracks = [
-    {
-        sampleName: 'kick',
-        trackMatrix: [1,0,0,0,  0,0,0,0,    1,0,1,0,    0,0,0,0]
-    },
-    {
-        sampleName: 'snare',
-        trackMatrix: [0,0,0,0,  1,0,0,0,    0,0,0,0,    1,0,0,0]
-    },
-    {
-        sampleName: 'closed-hihat',
-        trackMatrix: [1,0,1,0,  1,0,1,0,    1,0,1,0,    1,0,1,0]
-    },
-    {
-        sampleName: 'clap',
-        trackMatrix: [0,0,0,0,  1,0,0,0,    0,0,0,0,    1,0,1,0]
-    }
-];
 
 // 1 minute = 60,000 ms
 // 60,000 / BPM = duration of quarter note
