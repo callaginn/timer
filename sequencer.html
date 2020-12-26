@@ -62,7 +62,7 @@
                             </button>
                             <ul class="dropdown-menu" id="presetDropdown"></ul>
                             <input type="text" class="form-control" name="preset-name" placeholder="Preset Name">
-                            <a class="btn btn-outline-secondary" data-bs-toggle="modal" href="#modalPreset">Add Preset</a>
+                            <button type="button" class="btn btn-outline-secondary" onclick="addPreset()">Add Preset</a>
                         </div>
                     </div>
                 </div>
@@ -138,6 +138,21 @@
             </button>
         </span>
 
+        <div class="modal" id="modalPresetAdded">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">New Preset Saved</h5>
+                        <a class="btn btn-close" data-bs-dismiss="modal"></a>
+                    </div>
+
+                    <div class="modal-body">
+                        Your preset has been saved for the world to see! You can select it via the "Load" dropdown.
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script>
             document.querySelectorAll(".controls .btn").forEach(btn => {
                 var btnPlay = document.getElementById("btnPlay"),
@@ -149,22 +164,6 @@
                 });
             });
         </script>
-
-        <div class="modal" id="modalPreset">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title"></h5>
-                        <a class="btn btn-close" data-bs-dismiss="modal"></a>
-                    </div>
-
-                    <div class="modal-body">
-                        <p class="alert alert-warning">This config must be manually added to the code on my end. I "might" add an interface for this in the future &mdash; Stephen.</p>
-<pre class="mb-0"><code class="language-markup"></code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/assets/js/howler.min.js"></script>

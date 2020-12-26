@@ -115,6 +115,23 @@ function buildLayout() {
     });
 }
 
+function loadPresetDropdown(presets) {
+    var presetDropdown = document.getElementById("presetDropdown"),
+        presetItems = ``;
+
+    presetDropdown.innerHTML = "";
+
+    presets.forEach((preset, i) => {
+        if (i > 0) {
+            presetItems += `<li><button type="button" class="dropdown-item" onclick="loadPreset(${i})">${preset.name}</button></li>`;
+        }
+    });
+
+    presetItems += '<li><hr class="dropdown-divider"></li>';
+    presetItems += '<li><button type="button" class="dropdown-item" onclick="location.reload()">Reset Tracks</button></li>';
+    presetDropdown.insertAdjacentHTML('beforeend', presetItems);
+}
+
 function loadPreset(i) {
     drumTracks = presets[i].tracks;
 
@@ -135,5 +152,26 @@ function loadPreset(i) {
         });
 
         //if (track.notes[i]) drums.play(track.name);
+    });
+}
+
+function addPreset() {
+    // Save New Presets
+    fetch("add-sequence.php", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: getSequenceValues()
+    }).then(function(response) {
+        return response.json();
+    }).then(function(presets) {
+        loadPresetDropdown(presets);
+
+        var modal = new bootstrap.Modal(document.getElementById('modalPresetAdded'));
+        modal.show();
+    }).catch(function(error) {
+        console.log(error);
     });
 }
