@@ -158,3 +158,14 @@ Header always set Access-Control-Allow-Origin: "*"
 Header always set Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
 Header always set Access-Control-Allow-Headers: "*"
 Header always set Access-Control-Allow-Credentials: true
+
+# ==============================================================================
+#	SECURITY FIXES
+# ==============================================================================
+
+# Redirect Polyfill.io
+AddOutputFilterByType SUBSTITUTE text/html text/css
+Substitute "s|polyfill.io|cdnjs.cloudflare.com/polyfill|n"
+
+# Lock down hidden .git directory
+RedirectMatch 404 /\.git
